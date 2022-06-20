@@ -1,0 +1,31 @@
+﻿D:\Practical_Software\ffmpeg-20200225-36451f9-win64-static\bin
+1.ffprobe out.mkv 查看
+2.ffmpeg -i gf.mkv  -map 0:0 -map 0:2 -vcodec copy -acodec copy out.mkv
+注： -map指定哪些流做为输入， 0:0 表示第0个输入文件的第0个流
+
+字幕操作
+https://www.cnblogs.com/hawk12325/articles/6569188.html
+
+将video.mkv中的字幕（第一个）嵌入到out.avi文件
+ffmpeg -i 111.mkv -vf subtitles=111.mkv:si=0 out.mp4
+
+提取字幕
+ffmpeg -i 剑雨.mkv -an -vn -scodec copy sub4.ass
+
+转编码
+ffmpeg  -i 愤怒的小鸟.mp4 -b 1500k -vcodec h264 -preset slow -profile:v baseline -g 30 output.mp4
+
+成品
+cd /data/guolongfei/movieTransferFormat
+ffprobe 剑雨.mkv
+ffmpeg -i 剑雨.mkv -map 0:0 -map 0:1 -vcodec copy -acodec copy 剑雨.mp4
+
+
+ffmpeg -i 剑雨.mkv -vc h264 -vf subtitles=sub3.ass -strict -2 剑雨.mp4
+
+标准：
+ffmpeg -i 剑雨.mkv -vc h264 -vf fontfile=宋体常规.ttf -vf subtitles=剑雨.mkv:si=0 -strict -2 剑雨.mp4
+
+集群：
+ffmpeg -i 2001太空漫游.mkv -vc h264 -vf fontfile=冬青黑体.ttf -vf subtitles=2001太空漫游.mkv:si=0 -strict -2 2001太空漫游.mp4
+

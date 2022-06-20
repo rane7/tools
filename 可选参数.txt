@@ -1,0 +1,21 @@
+# 选择流，这个是第一个输入视频的第一个流
+-map 0:0
+
+# 指定视频流编码为hevc
+-c:v hevc
+-vcodec hevc
+## 用过的可选编码
+hevc：属于h265标准，压缩率高，但是好像不能生成预览图
+h264：属于h264标准，兼容性最好，能生成预览图
+copy：复制输入流的编码
+
+# 指定音频流编码为aac
+-c:a aac
+-acodec aac
+## 用过的可选编码
+aac：常用的音频编码
+copy：复制输入流的编码
+
+# 设置容器封装队列的大小，解决Too many packets buffered for output stream 0:1问题
+-max_muxing_queue_size 1024
+
